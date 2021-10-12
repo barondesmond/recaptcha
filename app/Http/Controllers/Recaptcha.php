@@ -27,12 +27,9 @@ class Recaptcha extends Controller
 
       $context = stream_context_create($options);
       $json = @file_get_contents($url, false, $context);
-      echo $json;
       $db = @json_decode($json, 1);
-      print_r($db);
-      if (isset($db)) {
-          return view('welcome', $db);
-      }
+      return view('welcome', ['response'=>$db]);
+
 
 
     }
